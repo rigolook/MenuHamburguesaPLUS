@@ -7,14 +7,14 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Padding="20">
-
             <Frame CornerRadius="100">
                 <!-- Campos de entrada de usuario y contraseña -->
                 <Entry Placeholder="Nombre de usuario"
                        PlaceholderColor="#6699CC"
                        BackgroundColor="#FFFFFF" 
                        TextColor="#333333" 
-                       Margin="0,0,0,10" Text="{Binding Nombre}">
+                       Margin="0,0,0,10"
+                       Text="{Binding Nombre}">
                     <Entry.Triggers>
                         <Trigger TargetType="Entry" Property="Text" Value="">
                             <Setter Property="BackgroundColor" Value="Red"/>
@@ -31,7 +31,8 @@
                        BackgroundColor="#FFFFFF"
                        TextColor="#333333"
                        IsPassword="True" 
-                       Margin="0,0,0,10" Text="{Binding Password}">
+                       Margin="0,0,0,10"
+                       Text="{Binding Password}" >
                     <Entry.Triggers>
                         <DataTrigger TargetType="Entry" Binding="{Binding Nombre}" Value="">
                             <Setter Property="IsEnabled" Value="False"/>
@@ -41,11 +42,13 @@
                 <!-- Color de fondo blanco, texto oscuro -->
             </Frame>
 
-            <Button Text="Iniciar Seción"
-                     BackgroundColor="#6699CC"
+            <Button x:Name="btnIniciarSesion"
+                     Text="Iniciar Sesión"
+                     BackgroundColor="{Binding colorbtn}"
                      TextColor="#FFFFFF" 
                      CornerRadius="50" 
                      Margin="0,120,0,0"
+                    
                      Command="{Binding Iniciarcommand}" IsEnabled="False">
                 <Button.Triggers>
                     <MultiTrigger TargetType="Button">
@@ -57,11 +60,10 @@
                     </MultiTrigger>
                 </Button.Triggers>
             </Button>
-            <!-- Botón de registro -->
-
+            <!-- Botón de inicio de sesión -->
 
             <!-- Enlace para iniciar sesión -->
-            <Label Text="¿Aun notienes una cuenta? Registrate aquí."
+            <Label Text="¿Aún no tienes una cuenta? Regístrate aquí."
                    TextColor="#6699CC" 
                    HorizontalOptions="Center">
                 <Label.GestureRecognizers>
@@ -69,7 +71,6 @@
                 </Label.GestureRecognizers>
             </Label>
             <!-- Color de texto azul claro -->
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

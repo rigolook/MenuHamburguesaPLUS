@@ -13,7 +13,7 @@
                    PlaceholderColor="#6699CC"
                    BackgroundColor="#FFFFFF" 
                    TextColor="#333333" 
-                   Margin="0,0,0,10" />
+                   Margin="0,0,0,10" Text="{Binding Nombre}"/>
             </Frame>
             <Frame CornerRadius="100">
                 <!-- Color de fondo blanco, texto oscuro -->
@@ -21,7 +21,7 @@
                    PlaceholderColor="#6699CC" 
                    BackgroundColor="#FFFFFF"
                    TextColor="#333333"
-                   Margin="0,0,0,10" />
+                   Margin="0,0,0,10" Text="{Binding Numero}"/>
             </Frame>
             <Frame CornerRadius="100">
                 <!-- Color de fondo blanco, texto oscuro -->
@@ -30,7 +30,7 @@
                    BackgroundColor="#FFFFFF"
                    TextColor="#333333"
                    IsPassword="True" 
-                   Margin="0,0,0,10" />
+                   Margin="0,0,0,10" Text="{Binding Password}"/>
                 <!-- Color de fondo blanco, texto oscuro -->
             </Frame>
             <Frame CornerRadius="100">
@@ -40,13 +40,13 @@
                    BackgroundColor="#FFFFFF"
                    TextColor="#333333"
                    IsPassword="True" 
-                   Margin="0,0,0,10" />
+                   Margin="0,0,0,10" Text="{Binding ConfirmarP}"/>
                 <!-- Color de fondo blanco, texto oscuro -->
             </Frame>
 
             <!-- Botón de registro -->
             <Button Text="Registrarse"
-                    BackgroundColor="#6699CC"
+                    BackgroundColor="{Binding colorbtn}"
                     TextColor="#FFFFFF" 
                     CornerRadius="50" 
                     Margin="0,120,0,0"
@@ -59,7 +59,7 @@
                    TextColor="#6699CC" 
                    HorizontalOptions="Center">
                 <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding Registrarcommand}"/>
+                    <TapGestureRecognizer Command="{Binding loginIrcommand}"/>
                 </Label.GestureRecognizers>
             </Label>
             <!-- Color de texto azul claro -->

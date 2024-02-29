@@ -28,7 +28,7 @@ namespace MenuHamburguesa.ViewModel
             };
         }
 
-        #region Procesos
+        #region Objetos
         public List<MSenGaz> Lista
         {
             get { return _SensoresGaz; }

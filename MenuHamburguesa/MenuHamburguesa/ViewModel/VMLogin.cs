@@ -9,19 +9,38 @@ using Xamarin.Forms;
 
 namespace MenuHamburguesa.ViewModel
 {
-    internal class VMLogin : BaseViewModel
+    public class VMLogin : BaseViewModel
     {
         #region Referencias
-        string _nombre;
+        string _nombre = string.Empty;
         //int _numero;
-        string _password;
+        string _password = string.Empty;
+        bool _inicio;
+
+        string _colorbtn = "#6699CC";
         #endregion
+        public VMLogin(INavigation naivigation)
+        {
+            Navigation = naivigation;
+
+        }
         #region Objetos
+        public string colorbtn
+        {
+            get { return _colorbtn; }
+            set { SetValue(ref _colorbtn, value); }
+
+        }
+        public bool inicio
+        {
+            get { return _inicio; }
+            set { SetValue(ref _inicio, value); }
+        }
         public string Nombre
         {
             get { return _nombre; }
-            set 
-            { 
+            set
+            {
                 _nombre = value;
                 OnPropertyChanged();
             }
@@ -45,17 +64,51 @@ namespace MenuHamburguesa.ViewModel
             }
         }
         #endregion
-        public VMLogin(INavigation naivigation)
-        {
-            Navigation = naivigation;
+        private string _Mensaje;
 
+        public string Mensaje
+        {
+            get { return _Mensaje; }
+            set
+            {
+                _Mensaje = value;
+                OnPropertyChanged();
+            }
         }
-
         #region Procesos
-        public async Task IniciarSecion()
-        {
 
-            await Navigation.PushAsync(new MainPage());
+        private async Task IniciarSecion()
+        {
+            if (Nombre != string.Empty && Password != string.Empty) {
+                    colorbtn = "Green";
+                    await Task.Delay(200);
+                    colorbtn = "#6699CC";
+                    await Navigation.PushAsync(new MainPage());
+                    await DisplayAlert("Éxito", "La Sesión se inició exitosamente.", "Aceptar");
+            }
+            else if (Nombre == string.Empty && Password != string.Empty)
+            {
+                await DisplayAlert("¡Datos insuficientes!", "Llena también el campo del nombre de usuario para iniciar Sesión.", "Aceptar");
+            }
+            else if (Nombre != string.Empty && Password == string.Empty)
+            {
+                await DisplayAlert("¡Datos insuficientes!", "Llena también el campo de la contraseña para iniciar Sesión.", "Aceptar");
+            }
+            else
+            {
+                await DisplayAlert("Datos erróneos", "Llena todos los campos para iniciar Sesión.", "Aceptar");
+            }
+        }
+        public void confirmar()
+        {
+            if (Nombre != string.Empty && Password != string.Empty)
+            {
+                inicio = true;
+            }
+            else
+            {
+                inicio = false;
+            }
         }
 
         public async Task Registrar()
@@ -65,6 +118,8 @@ namespace MenuHamburguesa.ViewModel
         }
 
         #endregion
+
+
         #region Comandos
 
         public ICommand Iniciarcommand => new Command(async () => await IniciarSecion());
